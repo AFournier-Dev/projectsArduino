@@ -6,12 +6,17 @@
  * Initialisation des constantes
  */
 
+//bouton poussoir
 const int buttonPin = 2;          // declaration de la constante bouton poussoir sur la broche 2
+
+//LED du feux tricolore
 const int ledPinGreenCar = 10;    // declaration de la constante feu vert voiture sur la broche 10
 const int ledPinOrangeCar = 11;   // declaration de la constante feu orange voiture sur la broche 11
 const int ledPinRedCar = 12;      // declaration de la constante feu rouge voiture sur la broche 12
-const int ledPinGreenWalker = 12; // declaration de la constante feu rouge voiture sur la broche 8
-const int ledPinRedWalker = 12;   // declaration de la constante feu rouge voiture sur la broche 9
+
+//LED feux pieton
+const int ledPinGreenWalker = 8; // declaration de la constante feu rouge voiture sur la broche 8
+const int ledPinRedWalker = 9;   // declaration de la constante feu rouge voiture sur la broche 9
 
 
 // Déclaration des variables :
@@ -30,6 +35,7 @@ void setup() {
   pinMode(ledPinGreenCar, OUTPUT);     // indique que la broche ledPinGreenCar est une sortie
   pinMode(ledPinOrangeCar, OUTPUT);    // indique que la broche ledPinOrangeCar est une sortie
   pinMode(ledPinRedCar, OUTPUT);       // indique que la broche ledPinRedCar est une sortie
+  
   pinMode(ledPinGreenWalker, OUTPUT);  // indique que la broche ledPinGreenWalker est une sortie
   pinMode(ledPinRedWalker, OUTPUT);    // indique que la broche ledPinRedWalker est une sortie
 
@@ -42,17 +48,18 @@ void setup() {
 
 void loop() { // le code dans cette fonction est exécuté en boucle
 
+  // lit l'état du bouton et stocke le résultat
+  // dans buttonState :
+  
+
 // lecture de l'état du bouton dans buttonState idem debut semaine 2
 
 // Si buttonState est à 5V (HIGH→bouton appuyé)
-  if (buttonState == HIGH) {     
-    // on allume le feu vert des pietons
-    digitalWrite(ledPinRedWalker, LOW);     //extinction du feu rouge pieton
-    digitalWrite(ledPinGreenWalker, HIGH);  //allume le feu vert pieton
-    delay(5000);                            //    pendant 5s (5000ms);
-    digitalWrite(ledPinRedWalker, HIGH);    //allume le feu rouge et fin du if et retour dans la boucle 
-  } 
-  else {
+  
+buttonState = digitalRead(buttonPin);  
+
+  if (buttonState == LOW) {  
+     
     // sinon boucle pour le feux des voiture avec les constantes déclarées au début avant le setup
     digitalWrite(ledPinRedWalker, HIGH); //allume le feu rouge pieton tant qu'on est dans le else 
                                          //     donc pas d'appuie sur le bouton
@@ -62,12 +69,24 @@ void loop() { // le code dans cette fonction est exécuté en boucle
     digitalWrite(ledPinOrangeCar, HIGH);
     delay(1000);
     digitalWrite(ledPinOrangeCar, LOW); 
-    digitalWrite(ledPinRedWalker, HIGH);
+    digitalWrite(ledPinRedCar, HIGH);
     delay(3000);
-    digitalWrite(ledPinRedWalker, LOW);
+    digitalWrite(ledPinRedCar, LOW);
+    
+    
+    
+  } 
+   if (buttonState == HIGH){
+   // on allume le feu vert des pietons
+    digitalWrite(ledPinRedWalker, LOW);     //extinction du feu rouge pieton
+    digitalWrite(ledPinGreenWalker, HIGH);  //allume le feu vert pieton
+    delay(5000);                            //    pendant 5s (5000ms);
+    digitalWrite(ledPinGreenWalker, LOW);  //eteind le feu vert pieton
+    digitalWrite(ledPinRedWalker, HIGH);    //allume le feu rouge et fin du if et retour dans la boucle 
   }
 
-
+delay (2000); //ici on attend 2secondes pour refaire le test sur le bouton ca oblige a rester longtemps sur le bouton poussoir car il faut appuyer suffisament longtemps pour que ça soit pris en compte.
+                  //même si le delai est à 20ms il faut appuyer suffisament longtemps car au bon moment
 
   /*
    * premiere boucle du feux tricolore
