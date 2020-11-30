@@ -87,25 +87,24 @@ void loop()
     digitalWrite(ledPinRedWalker, HIGH);
     digitalWrite(ledPinRedCar, LOW); //allume le feu rouge et fin du if et retour dans la boucle
   }
-
-  // Surtout pas de delai sinon deux seconde sans feux voiture
-  //delay (2000); ici on attend 2secondes pour refaire le test sur le bouton ca oblige a rester longtemps sur le bouton poussoir car il faut appuyer suffisament longtemps pour que ça soit pris en compte.
-  //même si le delai est à 20ms il faut appuyer suffisament longtemps car au bon moment
-
-  /*
-   * premiere boucle du feux tricolore
-   */
 }
 
 /*
 NOTE MÉDIANE DES PAIRS. - 3 POINTS
 Code fonctionnel mais améliorable 
 PAIR 1 - CODE FONCTIONNEL MAIS AMÉLIORABLE
-la ligne 86 : delay (2000); n'était pas demandée et laisse pendant 2 secondes le feu tricolore sans feu allumé. ligne 82 et 83 devraient être placée dans la condition "buttonState == LOW" car si on laisse le bouton appuyé le feu bicolore reste vert et le feu tricolore ne redémarre pas dans la condition "buttonState == HIGH" il manque l'instruction de passer le feu tricolore à rouge, ce qui a pour inconvénient de ne pas avoir de feu pour les voitures et de ne pas respecter l'instruction "puis rouge pendant 5 secondes" de l'énoncé.
+la ligne 86 : delay (2000); n'était pas demandée et laisse pendant 2 secondes le feu tricolore sans feu allumé. 
+ligne 82 et 83 devraient être placée dans la condition "buttonState == LOW" car si on laisse le bouton appuyé le 
+feu bicolore reste vert et le feu tricolore ne redémarre pas dans la condition "buttonState == HIGH" il manque 
+l'instruction de passer le feu tricolore à rouge, ce qui a pour inconvénient de ne pas avoir de feu pour les voitures 
+et de ne pas respecter l'instruction "puis rouge pendant 5 secondes" de l'énoncé.
 
 PAIR 2 - CODE NON FONCTIONNEL
-il faut garder en permanence le BP appuyé pour faire passer le feu pieton au vert, alors qu'il est demandé que l'appui sur le bouton soit detecté pendant que le feu auto est au vert, alors la sequence du feu pieton peut etre lancée
+il faut garder en permanence le BP appuyé pour faire passer le feu pieton au vert, alors qu'il est demandé que 
+l'appui sur le bouton soit detecté pendant que le feu auto est au vert, alors la sequence du feu pieton peut etre lancée
 
 PAIR 3 - CODE FONCTIONNEL MAIS AMÉLIORABLE
-Boucle du feu tricolore, une tempo de 2s en trop sur le cycle La gestion du bouton n'est pas correctement réalisée, le feu piéton doit s'activer lorsqu'on appui sur le bouton pendant que le feu tricolore vert est allumé. Le feu tricolore reste éteint pendant que le feu piéton passe au vert (risque d'accident).
+Boucle du feu tricolore, une tempo de 2s en trop sur le cycle La gestion du bouton n'est pas correctement réalisée, le 
+feu piéton doit s'activer lorsqu'on appui sur le bouton pendant que le feu tricolore vert est allumé. Le feu tricolore 
+reste éteint pendant que le feu piéton passe au vert (risque d'accident).
 */
